@@ -7,12 +7,11 @@
 runtime/
 vendor/
 .phpintel/
-# .env
+.env
 .DS_Store
 .phpunit*
 *.cache
-# .vscode/
+.vscode/
 /phpstan.neon
 /phpunit.xml
-
 /.history
