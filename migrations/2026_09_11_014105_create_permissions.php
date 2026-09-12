@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void {
         /** 权限 */
-        Schema::create('permission', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
@@ -25,6 +25,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists( 'permission' );
+        Schema::dropIfExists( 'permissions' );
     }
 };

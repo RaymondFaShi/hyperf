@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->collation = 'utf8_unicode_ci';
 
             $table->mediumIncrements( 'id' )->comment( '用户id' );
-            $table->string( 'username', 50 )->unique()->comment( '用户名' );
-            $table->string( 'email', 255 )->unique()->comment( '邮箱' );
+            $table->string( 'username', 50 )->unique( 'username' )->comment( '用户名' );
+            $table->string( 'email', 255 )->unique( 'email' )->comment( '邮箱' );
             $table->string( 'telephone', 30 )->comment( '联系电话' );
             $table->string( 'password', 32 )->comment('密码');
             $table->string( 'salt', 4 )->comment( '扰乱码' );
@@ -31,7 +31,7 @@ return new class extends Migration {
             $table->collation = 'utf8_unicode_ci';
 
             $table->mediumIncrements( 'id' )->comment( '自增id' );
-            $table->unsignedMediumInteger( 'user_id' )->unique()->comment( '用户id' );
+            $table->unsignedMediumInteger( 'user_id' )->unique( 'user_id' )->comment( '用户id' );
             $table->string( 'realname', 20 )->comment( '真实姓名' );
             $table->timestamp( 'last_login_at' )->comment( '最后登录时间' );
             $table->timestamp( 'created_at' )->nullable()->comment( '创建时间' );

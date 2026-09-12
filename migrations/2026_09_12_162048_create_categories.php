@@ -9,16 +9,14 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        /** 仓位 */
-        Schema::create( 'locations', function ( Blueprint $table ) {
+        /** 分类 */
+        Schema::create( 'categories', function ( Blueprint $table ) {
             $table->engine = 'InnoDB';
             $table->charset = 'utf8';
             $table->collation = 'utf8_unicode_ci';
 
-            $table->increments( 'id' )->comment( 'id' );
-            $table->unsignedInteger( 'product_id' )->index()->comment( '商品id' );
-
-            $table->timestamps();
+            $table->tinyIncrements( 'id' )->comment( '分类id' );
+            $table->string( 'name', 120 )->index( 'name' )->comment( '分类名称' );
         } );
     }
 
@@ -26,6 +24,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists( 'locations' );
+        Schema::dropIfExists( 'categories' );
     }
 };

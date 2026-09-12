@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->collation = 'utf8_unicode_ci';
 
             $table->smallIncrements( 'id' )->comment( '角色id' );
-            $table->string( 'code', 50 )->unique()->comment( '角色标识' );
+            $table->string( 'code', 50 )->unique( 'code' )->comment( '角色标识' );
             $table->string( 'name', 20 )->unique()->comment( '角色名' );
         } );
 

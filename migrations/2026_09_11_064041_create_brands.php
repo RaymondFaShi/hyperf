@@ -12,8 +12,8 @@ return new class extends Migration {
         /** 品牌 */
         Schema::create( 'brands', function ( Blueprint $table ) {
             $table->mediumIncrements( 'id' )->comment( '品牌id' );
-            $table->string( 'name', 60 )->comment( '品牌名称' )->index( 'name' );
-            $table->string( 'flug', 60 )->comment( '品牌标识' )->index( 'flug' );
+            $table->string( 'name', 60 )->index( 'name' )->comment( '品牌名称' );
+            $table->string( 'flug', 60 )->unique( 'flug' )->comment( '品牌标识' );
         } );
     }
 

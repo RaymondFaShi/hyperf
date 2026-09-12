@@ -19,13 +19,18 @@ return new class extends Migration {
             $table->smallIncrements( 'id' )->comment( 'id' );
             $table->mediumIncrements( 'id' )->comment( 'id' );
             $table->increments( 'id' )->comment( 'id' );
+            $table->bigIncrements( 'id' )->comment( 'id' );
             
             $table->unsignedTinyInteger( 'parent_id' )->index()->comment( '父id' );
             $table->unsignedSmallInteger( 'parent_id' )->index()->comment( '父id' );
             $table->unsignedMediumInteger( 'parent_id' )->index()->comment( '父id' );
             $table->unsignedInteger( 'parent_id' )->index()->comment( '父id' );
+            $table->unsignedBigInteger( 'parent_id' )->index()->comment( '父id' );
 
             $table->unsignedTinyInteger( 'status' )->default( 1 )->comment( '状态:0-禁止 1-正常' );
+
+            $table->timestamp( 'updated_at' )->nullable()->comment( '更新时间' );
+            $table->timestamp( 'created_at' )->comment( '创建时间' );
 
             $table->timestamps();
         } );
