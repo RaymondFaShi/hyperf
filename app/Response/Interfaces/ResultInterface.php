@@ -5,14 +5,14 @@ namespace App\Response\Interfaces;
 /**
  * 响应数据结构
  */
-interface ResultStruct {
+interface ResultInterface {
     /**
      * 成功
      */
-    public static function ok();
+    public function ok(): array;
 
     /**
      * 失败
      */
-    public static function fail();
+    public function fail(): array;
 }

@@ -4,6 +4,6 @@ namespace App\Exception;
 
 use Hyperf\Server\Exception\ServerException;
 
-class WebAppException extends ServerException {
+class BaseException extends ServerException {
     
 }
