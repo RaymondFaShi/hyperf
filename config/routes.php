@@ -1,18 +1,21 @@
 <?php
+declare( strict_types = 1 );    // 严格模式
 
-declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
-
-Router::get('/favicon.ico', function () {
-    return '';
+// default
+Router::get( '/', function () {
+    // tests
+    return [ 'code' => 0, 'message' => 'success', 'timestamp' => time() ];
 });
+
+/**
+ * web路由
+ */
+Router::addGroup( '/v1', function() {
+    // 用户user
+    Router::addGroup( '/user', function () {
+        Router::get( '', [ \App\Controller\User\Index::class, 'index' ] );
+    } );
+
+}, [ 'middleware' => [] ] );

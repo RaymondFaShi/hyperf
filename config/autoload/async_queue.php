@@ -13,6 +13,7 @@ use Hyperf\AsyncQueue\Driver\RedisDriver;
 
 return [
     'default' => [
+        'enable' => false,
         'driver' => RedisDriver::class,
         'redis' => [
             'pool' => 'default',
