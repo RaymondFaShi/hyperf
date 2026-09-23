@@ -1,19 +1,19 @@
-.buildpath
-.settings/
-.project
-*.patch
-.idea/
+# default
 .git/
-runtime/
-vendor/
-.phpintel/
-.env
-.DS_Store
-.phpunit*
-*.cache
-.vscode/
-/phpstan.neon
-/phpunit.xml
 
 # ide
 /.history
+.vscode/
+.DS_Store
+.idea/
+.settings/
+.project
+
+# hyperf
+.env
+.env.development
+.env.production
+.env.local
+runtime/
+vendor/
+/logs

@@ -4,6 +4,6 @@ namespace App\Exception;
 
 use Hyperf\Server\Exception\ServerException;
 
-class BaseException extends ServerException {
+abstract class BaseException extends ServerException {
     
 }

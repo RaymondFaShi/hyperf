@@ -14,6 +14,6 @@ class Index extends BaseController {
     protected LoggerInterface $log;
 
     public function index() {
-        return 123;
+        log::add();
     }
 }

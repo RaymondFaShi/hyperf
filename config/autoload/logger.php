@@ -20,14 +20,14 @@ return [
             'handler' => [
                 'class' => StreamHandler::class,
                 'constructor' => [
-                    'stream' => BASE_PATH . '/runtime/logs/hyperf.log',
+                    'stream' => BASE_PATH . '/logs/system.log',
                     'level' => Level::Error,
                 ],
             ],
             'formatter' => [
                 'class' => LineFormatter::class,
                 'constructor' => [
-                    'format' => null,
+                    'format' => "[%datetime%] %message% %context% %extra%\n",
                     'dateFormat' => 'Y-m-d H:i:s',
                     'allowInlineLineBreaks' => true,
                 ],
