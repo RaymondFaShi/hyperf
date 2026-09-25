@@ -11,7 +11,6 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as MessageResponseInterface;
 use Override;
 
-
 abstract class BaseResponse implements InterfacesResponseInterface {
 
     /**

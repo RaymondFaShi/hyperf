@@ -15,6 +15,7 @@ use Psr\Log\LogLevel;
 use function Hyperf\Support\env;
 
 return [
+    // hyperf
     'app_name' => env('APP_NAME', 'skeleton'),
     'app_env' => env('APP_ENV', 'dev'),
     'scan_cacheable' => env('SCAN_CACHEABLE', false),
@@ -30,4 +31,7 @@ return [
             LogLevel::WARNING,
         ],
     ],
+
+    // custom
+    
 ];
