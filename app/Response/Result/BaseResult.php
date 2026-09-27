@@ -9,7 +9,7 @@ abstract class BaseResult implements ResultInterface {
     /**
      * status 状态
      */
-    public int|string $status;
+    public int|string|null $status = null;
 
     /**
      * message 消息
@@ -29,7 +29,7 @@ abstract class BaseResult implements ResultInterface {
         $result = [];
         
         // status
-        $result[ 'status' ] = $this->status === null?? 1;
+        $result[ 'status' ] = $this->status !== null? $this->status: 1;
 
         // message
         if( $this->message ) $result[ 'message' ] = $this->message;
@@ -49,7 +49,7 @@ abstract class BaseResult implements ResultInterface {
         $result = [];
         
         // status
-        $result[ 'status' ] = $this->status === null?? 0;
+        $result[ 'status' ] = $this->status !== null? $this->status: 0;
 
         // message
         if( $this->message ) $result[ 'message' ] = $this->message;

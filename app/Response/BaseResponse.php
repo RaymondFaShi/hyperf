@@ -5,7 +5,7 @@ namespace App\Response;
 use App\Response\Constant\SystemCode;
 use App\Response\Interfaces\ResponseInterface as InterfacesResponseInterface;
 use App\Response\Interfaces\ResultInterface;
-use Hyperf\Di\Annotation\Inject;
+use Hyperf\Context\Context;
 use Hyperf\HttpMessage\Stream\SwooleStream;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 use Psr\Http\Message\ResponseInterface as MessageResponseInterface;
@@ -17,6 +17,7 @@ abstract class BaseResponse implements InterfacesResponseInterface {
      * 系统代码消息映射
      */
     public const SYSTEM_CODE_MESSAGE = [
+        SystemCode::SUCCESS                 => 'success',
         SystemCode::DOCUMENT_NOT_FOUND      => 'document not found',
         SystemCode::INTERNAL_SERVER_ERROR   => 'internal server error',
         SystemCode::INVALID_DATA            => 'invalid data',
@@ -27,7 +28,6 @@ abstract class BaseResponse implements InterfacesResponseInterface {
      * header报头信息
      */
     private array $forceHeaders = [ // 强制报头
-        'server' => 'alpha',    // 遮盖服务
         'Content-Type' => 'application/json',   // 返回json格式
     ];
 
@@ -39,9 +39,10 @@ abstract class BaseResponse implements InterfacesResponseInterface {
     public int $httpStatus = 200;
 
     /**
-     * 响应
+     * construct
+     * @param ResponseInterface $response 响应
      */
-    #[Inject] public ResponseInterface $response;
+    // public function __construct( public ResponseInterface $response ){}
 
     /**
      * 成功
@@ -78,7 +79,7 @@ abstract class BaseResponse implements InterfacesResponseInterface {
      */
     private function json( array $data ): MessageResponseInterface {
         // 创建响应
-        $response = $this->response;
+        $response = $this->response();
 
         // header
         $headers = array_merge( $this->headers, $this->forceHeaders );
@@ -92,5 +93,12 @@ abstract class BaseResponse implements InterfacesResponseInterface {
         $response = $response->withBody( $bodyStream );
 
         return $response;
+    }
+
+    /**
+     * 获取当前请求 Response
+     */
+    protected function response(): MessageResponseInterface {
+        return Context::get( MessageResponseInterface::class );
     }
 }

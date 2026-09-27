@@ -1,6 +1,10 @@
 <?php
 
 declare(strict_types=1);
+
+use App\Middleware\AllowCorsDomainMiddleware;
+use App\Middleware\TraceMiddleware;
+
 /**
  * This file is part of Hyperf.
  *
@@ -11,6 +15,7 @@ declare(strict_types=1);
  */
 return [
     'http' => [
-        
+        AllowCorsDomainMiddleware::class,
+        TraceMiddleware::class,
     ],
 ];
