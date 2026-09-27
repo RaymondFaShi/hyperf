@@ -9,13 +9,17 @@ use App\Response\Result\ServerResult;
 use App\Response\ServerResponse;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Di\Annotation\Inject;
+use Override;
 
 abstract class ServerController extends BaseController {
     /** 配置 */
     #[Inject] protected ConfigInterface $config;
 
-    /** server响应 */
-    #[Inject] protected ServerResponse $serverResponse;
+    public function __construct(
+        protected ServerResponse $serverResponse,   // 响应
+    ) {
+
+    }
 
     /**
      * 返回成功
@@ -38,4 +42,6 @@ abstract class ServerController extends BaseController {
         // 响应
         return $this->serverResponse->error( SystemCode::SUCCESS, $result );
     }
+
+
 }

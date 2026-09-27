@@ -1,18 +1,16 @@
 <?php
 
 declare(strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @link     https://www.hyperf.io
- * @document https://hyperf.wiki
- * @contact  group@hyperf.io
- * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
- */
+
+use App\Annotation\Collector\ValidatorCollector;
+
 return [
     'scan' => [
         'paths' => [
-            BASE_PATH . '/app',
+            BASE_PATH . '/app/Annotation',
+        ],
+        'collectors' => [
+            // ValidatorCollector::class
         ],
         'ignore_annotations' => [
             'mixin',

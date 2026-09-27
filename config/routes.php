@@ -1,6 +1,7 @@
 <?php
 declare( strict_types = 1 );    // 严格模式
 
+use App\Middleware\ValidatorMiddleware;
 use Hyperf\HttpServer\Router\Router;
 
 // default
@@ -18,4 +19,4 @@ Router::addGroup( '/v1', function() {
         Router::get( '', [ \App\Controller\User\Index::class, 'index' ] );
     } );
 
-}, [ 'middleware' => [] ] );
+}, [ 'middleware' => [ ValidatorMiddleware::class ] ] );

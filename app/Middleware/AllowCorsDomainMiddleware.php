@@ -14,9 +14,6 @@ use Psr\Http\Server\RequestHandlerInterface;
  * 跨域请求支持
  */
 class AllowCorsDomainMiddleware implements MiddlewareInterface {
-    /** config */
-    #[Inject] protected ConfigInterface $config;
-
     /**
      * 允许域名列表
      */
@@ -32,8 +29,8 @@ class AllowCorsDomainMiddleware implements MiddlewareInterface {
         'Access-Control-Allow-Headers'     => 'Origin, Accept, Authorization, Content-Type, If-Match, If-Modified-Since, If-None-Match, If-Unmodified-Since, X-CSRF-TOKEN, X-Requested-With',
     ];
 
-    public function __construct() {
-        $this->allowDomain = $this->config->get( 'custom.allowDomain' );
+    public function __construct( ConfigInterface $config ) {
+        $this->allowDomain = $config->get( 'custom.allowDomain' );
     }
 
     /**

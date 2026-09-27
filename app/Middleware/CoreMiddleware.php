@@ -9,14 +9,19 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Hyperf\Di\Annotation\Inject;
 use Override;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * 重构核心中间件
  */
 class CoreMiddleware extends \Hyperf\HttpServer\CoreMiddleware {
-
-    #[Inject] protected ServerResponse $response;
+    /**
+     * construct
+     */
+    public function __construct( ContainerInterface $container, string $serverName, protected ServerResponse $response ) {
+        return parent::__construct( $container, $serverName );
+    }
 
     /** handler处理器 */
     #[Override] public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {

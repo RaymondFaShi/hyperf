@@ -32,7 +32,7 @@ class FallbackHandler extends ExceptionHandler {
 
         // 控制台信息
         $this->console->error( sprintf( '[ Code:%s ] [ Message:%s ] [ File:%s ] [ Line:%s ] [ Ex:%s ]', $throwable->getCode(), $throwable->getMessage(), $throwable->getLine(), $throwable->getFile(), $throwable::class ) );
-        // $this->console->error( $throwable->getTraceAsString() );
+        $this->console->error( $throwable->getTraceAsString() );
 
         // 记录日志
         $this->logger->error( sprintf( 

@@ -85,6 +85,10 @@ abstract class BaseResponse implements InterfacesResponseInterface {
         $headers = array_merge( $this->headers, $this->forceHeaders );
         foreach( $headers as $headerName => $headerValue ) $response = $response->withHeader( $headerName, $headerValue );
 
+        // 修改server报头
+        $response = $response->withoutHeader( 'Server' );
+        $response = $response->withHeader( 'Server', 'alpha' );
+
         // http status
         $response = $response->withStatus( $this->httpStatus );
 

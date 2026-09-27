@@ -1,6 +1,9 @@
 <?php
 
 declare(strict_types=1);
+
+use App\Response\ServerResponse;
+
 /**
  * This file is part of Hyperf.
  *
