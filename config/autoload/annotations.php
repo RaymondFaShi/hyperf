@@ -2,15 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Annotation\Collector\ValidatorCollector;
-
 return [
     'scan' => [
         'paths' => [
-            BASE_PATH . '/app/Annotation',
+            BASE_PATH . '/app',
         ],
         'collectors' => [
-            // ValidatorCollector::class
         ],
         'ignore_annotations' => [
             'mixin',

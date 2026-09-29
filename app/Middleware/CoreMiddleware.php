@@ -7,7 +7,6 @@ use App\Response\Constant\SystemCode;
 use App\Response\ServerResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Hyperf\Di\Annotation\Inject;
 use Override;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;

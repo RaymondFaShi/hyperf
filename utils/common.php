@@ -9,7 +9,7 @@ use function Hyperf\Support\env;
 /**
  * 打印日志(开发模式下)
  * @param mixed $content 日志数据
- * @param int $printMode [ 1-print_r 2-var_dump 3-var_export ]
+ * @param int $printMode [ 1-print_r|var_dump 2-var_dump 3-var_export ]
  */
 function devLog( mixed $content, int $printMode = 1 ) {
     // 开发模式下
@@ -17,7 +17,7 @@ function devLog( mixed $content, int $printMode = 1 ) {
 
     // 打印类型
     switch ( $printMode ) {
-        case 1: print_r( $content ); break;
+        case 1: $content? print_r( $content ): var_dump( $content ); break;
         case 2: var_dump( $content ); break;
         case 3: var_export( $content ); break;
     }

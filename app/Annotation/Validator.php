@@ -8,11 +8,13 @@ use Hyperf\Di\Annotation\AbstractAnnotation;
 
 #[Attribute( Attribute::TARGET_CLASS )]
 class Validator extends AbstractAnnotation {
+    /**
+     * construct
+     * @param string $validatorClassName 验证器类名
+     */
+    public function __construct( 
+        public string $validatorClassName,
+    ) {
 
-    /** 验证器 */
-    public readonly ValidatorInterface $validator;
-
-    public function __construct( string $validatorClassName ) {
-        $this->validator = new $validatorClassName;
     }
 }

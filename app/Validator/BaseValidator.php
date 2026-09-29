@@ -22,7 +22,7 @@ abstract class BaseValidator implements ValidatorInterface {
     }
 
     /** 获取场景下验证规则 */
-    public function getSceneRule( string $name, array $allData ): array {
+    public function getSceneRule( string $name, array $allData ) {
         // 如果场景存在
         if( $this->hasScene( $name ) ) {
             // 获取场景
