@@ -1,9 +1,16 @@
 <?php
+/**
+ * SciCompute 科学计算类
+ * @Version 1.0.0
+ */
 declare( strict_types = 1 );
 namespace Libaray;
 
 use NXP\MathExecutor;
 
+/**
+ * 科学计算类
+ */
 final class SciCompute {
 
     /** 计算精度 */

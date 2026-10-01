@@ -50,3 +50,21 @@ function randStr( int $length, $type = 0, bool $repeat = false ): bool|string {
 function generateUID( int $length = 16 ): string {
     return bin2hex( random_bytes( $length ) );
 }
+
+/**
+ * 递归ksort
+ * @param array $data 排序数据
+ */
+function deepKsort( array $data ) {
+    // 明细排序
+    foreach( $data as $key => &$item ) {
+        if( is_array( $item ) ) {
+            $item = deepKsort( $item );
+        }
+    }
+    
+    // 根层排序
+    ksort( $data );
+    
+    return $data;
+}

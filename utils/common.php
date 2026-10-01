@@ -8,18 +8,15 @@ use function Hyperf\Support\env;
 
 /**
  * 打印日志(开发模式下)
- * @param mixed $content 日志数据
- * @param int $printMode [ 1-print_r|var_dump 2-var_dump 3-var_export ]
+ * @param mixed $contents 日志数据
  */
-function devLog( mixed $content, int $printMode = 1 ) {
+function devLog( mixed ...$contents ): void {
     // 开发模式下
     if( env( 'APP_ENV' ) !== 'dev' ) return ;
 
-    // 打印类型
-    switch ( $printMode ) {
-        case 1: $content? print_r( $content ): var_dump( $content ); break;
-        case 2: var_dump( $content ); break;
-        case 3: var_export( $content ); break;
+    // 打印内容
+    foreach( $contents as $content ) {
+        var_dump( $content );
     }
 }
 

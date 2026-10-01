@@ -47,12 +47,12 @@ abstract class BaseResponse implements InterfacesResponseInterface {
     /**
      * 成功
      */
-    #[Override] public function success( int|string $code, ?ResultInterface $result ): MessageResponseInterface {
+    #[Override] public function success( int|string $code, ?ResultInterface $result = null, ?array $appendData = null ): MessageResponseInterface {
         // 系统代码消息
         $systemCodeMessage = static::SYSTEM_CODE_MESSAGE[ $code ];
 
         // 初始化返回数据
-        $responseData = [ 'code' => $code, 'message' => $systemCodeMessage ];
+        $responseData = [ 'code' => $code, 'message' => $systemCodeMessage, ...$appendData?? [] ];
         if( $result ) $responseData[ 'result' ] = $result->ok();
 
         // 响应
@@ -62,12 +62,12 @@ abstract class BaseResponse implements InterfacesResponseInterface {
     /**
      * 失败
      */
-    #[Override] public function error( int|string $code, ?ResultInterface $result = null ): MessageResponseInterface {
+    #[Override] public function error( int|string $code, ?ResultInterface $result = null, ?array $appendData = null ): MessageResponseInterface {
         // 系统代码消息
         $systemCodeMessage = static::SYSTEM_CODE_MESSAGE[ $code ];
 
         // 初始化返回数据
-        $responseData = [ 'code' => $code, 'message' => $systemCodeMessage ];
+        $responseData = [ 'code' => $code, 'message' => $systemCodeMessage, ...$appendData?? [] ];
         if( $result ) $responseData[ 'result' ] = $result->fail();
 
         // 响应

@@ -22,11 +22,16 @@ abstract class BaseResult implements ResultInterface {
     public array $data = [];
 
     /**
+     * appendData 追加数据
+     */
+    public array $appendData = [];
+
+    /**
      * 成功
      */
     #[Override] public function ok(): array {
         // 初始化返回数据
-        $result = [];
+        $result = $this->appendData;
         
         // status
         $result[ 'status' ] = $this->status !== null? $this->status: 1;
@@ -46,7 +51,7 @@ abstract class BaseResult implements ResultInterface {
      */
     #[Override] public function fail(): array {
         // 初始化返回数据
-        $result = [];
+        $result = $this->appendData;
         
         // status
         $result[ 'status' ] = $this->status !== null? $this->status: 0;

@@ -24,23 +24,23 @@ abstract class ServerController extends BaseController {
     /**
      * 返回成功
      */
-    public function success( ?ResultInterface $result = null ) {
+    public function success( ?ResultInterface $result = null, ?array $appendData = null ) {
         // 如果没有result, 新建一个
         if( !$result ) $result = new ServerResult;
 
         // 响应
-        return $this->serverResponse->success( SystemCode::SUCCESS, $result );
+        return $this->serverResponse->success( SystemCode::SUCCESS, $result, ...$appendData?? [] );
     }
 
     /**
      * 返回失败
      */
-    public function error( ?ResultInterface $result = null ) {
+    public function error( ?ResultInterface $result = null, ?array $appendData = null ) {
         // 如果没有result, 新建一个
         if( !$result ) $result = new ServerResult;
 
         // 响应
-        return $this->serverResponse->error( SystemCode::SUCCESS, $result );
+        return $this->serverResponse->error( SystemCode::SUCCESS, $result, ...$appendData?? [] );
     }
 
 

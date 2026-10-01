@@ -19,7 +19,7 @@ class JwtAuthMiddleware implements MiddlewareInterface {
     public function __construct(
         public ServerResponse $response,
     ) {
-
+        
     }
 
     /** handler */

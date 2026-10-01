@@ -24,7 +24,7 @@ class AuthenticateMiddleware implements MiddlewareInterface {
 
     /** handler */
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {
-
+        
 
 
         // next
