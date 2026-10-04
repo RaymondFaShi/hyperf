@@ -29,7 +29,7 @@ class AllowCorsDomainMiddleware implements MiddlewareInterface {
     ];
 
     public function __construct( ConfigInterface $config ) {
-        $this->allowDomain = $config->get( 'custom.allowDomain' );
+        $this->allowDomain = $config->get( 'custom.allowDomain', [] );
     }
 
     /**

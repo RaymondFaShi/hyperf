@@ -22,6 +22,7 @@ abstract class BaseResponse implements InterfacesResponseInterface {
         SystemCode::INTERNAL_SERVER_ERROR   => 'internal server error',
         SystemCode::INVALID_DATA            => 'invalid data',
         SystemCode::PERMISSION_DENIED       => 'permission denied',
+        SystemCode::CSRFTOKEN_MISMATCH      => 'csrf token mismatch',
     ];
 
     /**

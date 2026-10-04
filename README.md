@@ -26,3 +26,12 @@
 | `attribute_values`           | 属性值       |
 | `product_variant_attributes` | SKU-属性值关系 |
 
+| 字段 | 含义 |
+|---|---|
+| `iss` | 签发者 |
+| `sub` | JWT 对应的主体，例如用户 ID |
+| `aud` | 接收方 |
+| `exp` | 过期时间 |
+| `iat` | 签发时间 |
+| `nbf` | 在这个时间之前不能使用 |
+| `jti` | JWT 唯一 ID |

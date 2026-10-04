@@ -18,7 +18,7 @@ class CoreMiddleware extends \Hyperf\HttpServer\CoreMiddleware {
     /**
      * construct
      */
-    public function __construct( ContainerInterface $container, string $serverName, protected ServerResponse $response ) {
+    public function __construct( ContainerInterface $container, string $serverName, private ServerResponse $response ) {
         return parent::__construct( $container, $serverName );
     }
 

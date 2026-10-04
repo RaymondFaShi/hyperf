@@ -25,8 +25,8 @@ class ValidatorMiddleware implements MiddlewareInterface {
      * @param ValidatorFactoryInterface $validationFactory 验证工厂
      */
     public function __construct( 
-        public ValidatorFactoryInterface $validationFactory,
-        public ServerResponse $response,
+        private ValidatorFactoryInterface $validationFactory,
+        private ServerResponse $response,
     ) {
 
     }

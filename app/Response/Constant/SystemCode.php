@@ -21,5 +21,7 @@ final class SystemCode {
 
     /** 权限不足 */
     public const PERMISSION_DENIED = 'SYS10004';
-    
+
+    /** csrfToken不匹配 */
+    public const CSRFTOKEN_MISMATCH = 'SYS10005';
 }

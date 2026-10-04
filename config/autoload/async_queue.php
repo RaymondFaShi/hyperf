@@ -26,6 +26,6 @@ return [
         'concurrent' => [
             'limit' => 10,
         ],
-        'max_messages' => 0,
+        'max_messages' => 10,
     ],
 ];

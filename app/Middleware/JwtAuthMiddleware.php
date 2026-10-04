@@ -17,15 +17,15 @@ class JwtAuthMiddleware implements MiddlewareInterface {
      * @param ServerResponse $response server响应
      */
     public function __construct(
-        public ServerResponse $response,
+        private ServerResponse $response,
     ) {
         
     }
 
     /** handler */
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {
-
-
+        
+        
 
         // next
         return $handler->handle( $request );
