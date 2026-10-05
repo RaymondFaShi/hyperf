@@ -132,7 +132,7 @@ final class CryptoErrorCode {
     /** 编码失败 */
     public const int ENCODEING_FAILED       = 10004;
 
-    /** 解码失败 */
+    /** base64解码失败 */
     public const int INVALID_ENCRYPTED_DATA = 10005;
 
     /** 解密失败 */

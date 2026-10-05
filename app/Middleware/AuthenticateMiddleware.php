@@ -11,14 +11,13 @@ use Hyperf\Context\Context;
 use Psr\Http\Server\RequestHandlerInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Redis\Redis;
-use Libaray\Crypto;
 
 /**
  * api鉴权
  */
 class AuthenticateMiddleware implements MiddlewareInterface {
-    /** crypto配置信息 */
-    private readonly array $cryptoConfig;
+    /** apiAuth配置信息 */
+    private readonly array $apiAuthConfig;
 
     /** 加密算法 */
     private string $algorithm = 'aes-256-gcm';
@@ -32,7 +31,7 @@ class AuthenticateMiddleware implements MiddlewareInterface {
         private Redis $redis,
         ConfigInterface $config,
     ) {
-        $this->cryptoConfig = $config->get( 'crypto' );
+        $this->apiAuthConfig = $config->get( 'custom.apiAuth' );
     }
 
     /** handler */
@@ -41,15 +40,13 @@ class AuthenticateMiddleware implements MiddlewareInterface {
         $authorization = substr( $request->getHeaderLine( 'Authorization' ), 7 );
         if( !$authorization ) return $this->response->error( SystemCode::NO_LOGIN );
 
-        // 初始化加密类
-        $algorithmsConfig = $this->cryptoConfig[ $this->algorithm ];    // 加密算法配置
-        $passphrase = base64_decode( $this->cryptoConfig[ 'passphrase' ], true );   // 短语口令
-        $crypto = new Crypto( $this->algorithm, $algorithmsConfig[ 'ivLength' ], $algorithmsConfig[ 'tagLength' ], $algorithmsConfig[ 'passphraseLength' ] );
+        // 短语口令
+        $passphrase = base64_decode( $this->apiAuthConfig[ 'passphrase' ], true );
 
         // 解密bearToken
         try {
-            // bearToken
-            $bearToken = $crypto->decrypt( $authorization, $passphrase );
+            // bearToken解密
+            $bearToken = aesDecrypt( $this->algorithm, $authorization, $passphrase );
 
             // 解码数据
             $payload = json_decode( $bearToken );

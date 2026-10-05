@@ -19,7 +19,7 @@ return [
         'gc_maxlifetime' => 1200,
         'session_name' => 'vape_session',
         'domain' => null,
-        'cookie_lifetime' => 5 * 60 * 60,
+        'cookie_lifetime' => 24 * 60 * 60,
         'cookie_same_site' => 'lax',
     ],
 ];

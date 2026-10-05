@@ -10,6 +10,8 @@ use Hyperf\Redis\Redis;
 use Libaray\Crypto;
 use Psr\Log\LoggerInterface;
 
+use function Hyperf\Config\config;
+
 class Index extends ServerController {
 
     /**
@@ -24,9 +26,7 @@ class Index extends ServerController {
     #[Inject] protected Redis $redis;
 
     public function index() {
-        $crypto = new Crypto( 'aes-256-cbc', 16, 0, 32 );
-        devLog( $crypto->encrypt( '10001', generateUID( 16 ) ) );
-
+        devLog( generateUID( 20 ) );
 
         return $this->success( null );
     }

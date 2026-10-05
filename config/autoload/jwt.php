@@ -5,7 +5,7 @@ use function Hyperf\Support\env;
 
 return [
     // 密钥
-    'secret' => env( 'JWT_SECRET' ),
+    'secret' => env( 'JWT_AUTH_SECRET' ),
 
     // 签发人
     'iss' => env( 'APP_URL' ),

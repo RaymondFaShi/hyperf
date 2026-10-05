@@ -4,6 +4,10 @@
  */
 declare( strict_types = 1 );
 
+use Libaray\Crypto;
+
+use function Hyperf\Config\config;
+
 /**
  * 安全随机数
  * @param $length 生成字符串长度
@@ -67,4 +71,44 @@ function deepKsort( array $data ) {
     ksort( $data );
     
     return $data;
+}
+
+/**
+ * aes加密
+ * @param string $algorithm 加密方式
+ * @param string $plaintext 明文
+ * @param string $passphrase 短语密码
+ */
+function aesEncrypt( string $algorithm, string $plaintext, string $passphrase ): string {
+    // 获取加密配置
+    $cryptoConfig = config( 'crypto' );
+
+    // 加密算法配置
+    $algorithmsConfig = $cryptoConfig[ 'algorithms' ][ $algorithm ];
+
+    // 实例
+    $crypto = new Crypto( $algorithm, $algorithmsConfig[ 'ivLength' ], $algorithmsConfig[ 'tagLength' ], $algorithmsConfig[ 'passphraseLength' ] );
+
+    // 返回加密数据
+    return $crypto->encrypt( $plaintext, $passphrase );
+}
+
+/**
+ * aes解密
+ * @param string $algorithm 加密方式
+ * @param string $ciphertext 密文
+ * @param string $passphrase 短语密码
+ */
+function aesDecrypt( string $algorithm, string $ciphertext, string $passphrase ): string {
+    // 获取加密配置
+    $cryptoConfig = config( 'crypto' );
+
+    // 加密算法配置
+    $algorithmsConfig = $cryptoConfig[ 'algorithms' ][ $algorithm ];
+
+    // 实例
+    $crypto = new Crypto( $algorithm, $algorithmsConfig[ 'ivLength' ], $algorithmsConfig[ 'tagLength' ], $algorithmsConfig[ 'passphraseLength' ] );
+
+    // 返回解密数据
+    return $crypto->decrypt( $ciphertext, $passphrase );
 }

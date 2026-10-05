@@ -18,5 +18,19 @@ return [
     'apiAuth' => [
         // 生命周期
         'lifetime' => 7 * 24 * 60 * 60, // 默认7天，0为不限制
+
+        'passphrase' => env( 'API_AUTH_PASSPHRASE' ),   // 短语口令
+    ],
+
+    // session登录
+    'sessionAuth' => [
+        // 记住登录生命周期
+        'rememberLifetime' => 7 * 24 * 60 * 60, // 记住登录，默认7天
+
+        // 记住登录短语口令
+        'passphrase' => env( 'SESSION_AUTH_REMEMBER_PASSPHRASE' ),   // 短语口令
+
+        // 登录uri
+        'redirectLoginUri' => '/user/login',    // 重定向登录地址
     ]
 ];

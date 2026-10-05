@@ -9,6 +9,9 @@ use Hyperf\Di\Annotation\Inject;
 use Override;
 
 abstract class SessionAuthController extends ServerController {
+    /** 用户id */
+    protected readonly int $userId;
+
     /** 配置 */
     #[Inject] protected ConfigInterface $config;
 
