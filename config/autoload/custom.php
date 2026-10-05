@@ -13,4 +13,10 @@ return [
     'allowCsrfTokenExceptUri' => [
         
     ],
+
+    // api登录
+    'apiAuth' => [
+        // 生命周期
+        'lifetime' => 7 * 24 * 60 * 60, // 默认7天，0为不限制
+    ]
 ];

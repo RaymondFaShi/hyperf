@@ -7,6 +7,7 @@ use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\SessionInterface;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\Redis\Redis;
+use Libaray\Crypto;
 use Psr\Log\LoggerInterface;
 
 class Index extends ServerController {
@@ -23,8 +24,8 @@ class Index extends ServerController {
     #[Inject] protected Redis $redis;
 
     public function index() {
-        $data = $this->redis->hGetAll( 'fuck' );
-        devLog( $data );
+        $crypto = new Crypto( 'aes-256-cbc', 16, 0, 32 );
+        devLog( $crypto->encrypt( '10001', generateUID( 16 ) ) );
 
 
         return $this->success( null );

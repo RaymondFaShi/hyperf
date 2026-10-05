@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use App\Response\ServerResponse;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+use Hyperf\Context\Context;
 use Psr\Http\Server\RequestHandlerInterface;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Redis\Redis;
@@ -36,7 +37,7 @@ class JwtAuthMiddleware implements MiddlewareInterface {
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {
         // 获取报头beartToken
         $authorization = substr( $request->getHeaderLine( 'Authorization' ), 7 );
-        if( !$authorization ) $this->response->error( SystemCode::NO_LOGIN );
+        if( !$authorization ) return $this->response->error( SystemCode::NO_LOGIN );
 
         // 验证token
         try {
@@ -46,10 +47,26 @@ class JwtAuthMiddleware implements MiddlewareInterface {
             // 解密jwt
             $payload = JWT::decode( $authorization, $secretKey );
 
-            // 获取已经登录的session
-            $sessionId = $payload->jti;
+            // 获取数据
+            // $sessionId = $payload->jti; // jwt标识
+            $userId    = $payload->sub; // userId
 
+            // 从redis拉取授权信息
+            $authKey = 'jwtAuth:user:'. $userId;
+            $user = $this->redis->hGetAll( $authKey );
 
+            // 如果没有用户登录信息说明登录失效
+            if( !$user ) {
+                return $this->response->error( SystemCode::NO_LOGIN );
+            }
+
+            // 单点登录
+            // if( !$sessionId || !$user->sessionId || ( $sessionId !== $user[ 'sessionId' ] ) ) {
+            //     return $this->response->error( SystemCode::NO_LOGIN );
+            // }
+
+            // userId加入到上下文
+            Context::set( 'userId', $user[ 'userId' ] );
         }
 
         catch ( \Throwable $ex ) {

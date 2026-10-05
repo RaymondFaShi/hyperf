@@ -39,7 +39,7 @@ class AuthenticateMiddleware implements MiddlewareInterface {
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {
         // 获取报头bearToken
         $authorization = substr( $request->getHeaderLine( 'Authorization' ), 7 );
-        if( !$authorization ) $this->response->error( SystemCode::NO_LOGIN );
+        if( !$authorization ) return $this->response->error( SystemCode::NO_LOGIN );
 
         // 初始化加密类
         $algorithmsConfig = $this->cryptoConfig[ $this->algorithm ];    // 加密算法配置
@@ -54,7 +54,7 @@ class AuthenticateMiddleware implements MiddlewareInterface {
             // 解码数据
             $payload = json_decode( $bearToken );
             
-            // 获取sessionId
+            // 获取数据
             $sessionId = $payload->sessionId;   // session id
             $loginTime = $payload->loginTime;   // 该token登录时间节点
 
@@ -64,12 +64,12 @@ class AuthenticateMiddleware implements MiddlewareInterface {
             
             // 如果没有用户登录信息说明登录失效
             if( !$user ) {
-                $this->response->error( SystemCode::NO_LOGIN );
+                return $this->response->error( SystemCode::NO_LOGIN );
             }
 
             // 单点登录
             // if( !$loginTime || !$user[ 'loginTime' ] || ( strtotime( $loginTime ) < strtotime( $user[ 'loginTime' ] ) ) ) {
-            //     $this->response->error( SystemCode::NO_LOGIN );
+            //     return $this->response->error( SystemCode::NO_LOGIN );
             // }
 
             // userId加入到上下文

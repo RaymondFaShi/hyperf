@@ -71,6 +71,7 @@ final class Crypto {
         }
 
         // 返回base64
+        if( $tag === null ) $tag = '';  // 空tag优化
         $payload = json_encode( [
             'iv' => base64_encode( $iv ),
             'tag' => base64_encode( $tag ),
