@@ -4,7 +4,7 @@ declare( strict_types = 1 );
 use function Hyperf\Support\env;
 
 return [
-    'key' => env( 'CRYPTO_KEY' ),
+    'passphrase' => env( 'CRYPTO_KEY' ),
     'algorithms' => [
         'aes-256-gcm' => [
             'ivLength' => 12,

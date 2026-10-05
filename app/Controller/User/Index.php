@@ -6,6 +6,7 @@ use App\Controller\ServerController;
 use Hyperf\Contract\ConfigInterface;
 use Hyperf\Contract\SessionInterface;
 use Hyperf\Di\Annotation\Inject;
+use Hyperf\Redis\Redis;
 use Psr\Log\LoggerInterface;
 
 class Index extends ServerController {
@@ -19,8 +20,12 @@ class Index extends ServerController {
 
     #[Inject] protected SessionInterface $session;
 
+    #[Inject] protected Redis $redis;
+
     public function index() {
-        // devLog( $this->session->all() );
+        $data = $this->redis->hGetAll( 'fuck' );
+        devLog( $data );
+
 
         return $this->success( null );
     }

@@ -1,6 +1,8 @@
 <?php
 declare( strict_types = 1 );
 
+use function Hyperf\Support\env;
+
 return [
     // 允许跨域域名列表
     'allowDomain' => [

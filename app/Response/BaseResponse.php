@@ -21,6 +21,7 @@ abstract class BaseResponse implements InterfacesResponseInterface {
         SystemCode::DOCUMENT_NOT_FOUND      => 'document not found',
         SystemCode::INTERNAL_SERVER_ERROR   => 'internal server error',
         SystemCode::INVALID_DATA            => 'invalid data',
+        SystemCode::NO_LOGIN                => 'no login',
         SystemCode::PERMISSION_DENIED       => 'permission denied',
         SystemCode::CSRFTOKEN_MISMATCH      => 'csrf token mismatch',
     ];

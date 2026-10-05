@@ -27,8 +27,14 @@ class SessionAuthMiddleware implements MiddlewareInterface {
 
     /** handler */
     public function process( ServerRequestInterface $request, RequestHandlerInterface $handler ): ResponseInterface {
-        
+        // 获取当前用户id
+        $userId = $this->session->get( 'userId' );
 
+        // 如果没有userId
+        if( !$userId ) {
+            
+        }
+        
 
         // next
         return $handler->handle( $request );

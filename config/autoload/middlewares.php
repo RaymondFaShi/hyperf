@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Middleware\AllowCorsDomainMiddleware;
 use App\Middleware\CsrfTokenMiddleware;
+use App\Middleware\JwtAuthMiddleware;
 use App\Middleware\TraceMiddleware;
 
 /**
@@ -20,7 +21,6 @@ return [
 
         AllowCorsDomainMiddleware::class,
         TraceMiddleware::class,
-        CsrfTokenMiddleware::class,
-        
+        // CsrfTokenMiddleware::class,
     ],
 ];

@@ -19,9 +19,11 @@ final class SystemCode {
     /** 错误的数据 */
     public const INVALID_DATA = 'SYS10003';
 
+    public const NO_LOGIN = 'SYS1004';
+
     /** 权限不足 */
-    public const PERMISSION_DENIED = 'SYS10004';
+    public const PERMISSION_DENIED = 'SYS10005';
 
     /** csrfToken不匹配 */
-    public const CSRFTOKEN_MISMATCH = 'SYS10005';
+    public const CSRFTOKEN_MISMATCH = 'SYS10006';
 }

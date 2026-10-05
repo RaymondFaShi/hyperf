@@ -34,9 +34,7 @@ class CsrfTokenMiddleware implements MiddlewareInterface {
         // private SessionInterface $session,
         ConfigInterface $config,
     ) {
-        $this->exceptUri = $config->get( 'allowCsrfTokenExceptUri', [
-            '/v1/user'
-        ] );
+        $this->exceptUri = $config->get( 'allowCsrfTokenExceptUri', [] );
     }
 
     /** handler */
